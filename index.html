@@ -6,61 +6,90 @@
 <title>Datos Bancarios</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
-  font-family: Arial, sans-serif;
-  background:#f4f4f4;
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background:#f3f4f6;
   display:flex;
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  margin:0;
   padding:20px;
 }
 
 .card{
   background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
   width:100%;
-  max-width:500px;
+  max-width:520px;
+  padding:28px;
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
 }
 
 h2{
   margin-top:0;
+  margin-bottom:20px;
+  font-size:24px;
 }
 
-textarea{
-  width:100%;
-  border:none;
-  background:#eee;
-  padding:15px;
-  border-radius:8px;
-  font-size:14px;
-  resize:none;
+.data-box{
+  background:#f1f3f5;
+  padding:18px;
+  border-radius:10px;
+  font-family:monospace;
+  line-height:1.7;
+  font-size:15px;
+  word-break:break-word;
+}
+
+.label{
+  color:#555;
 }
 
 button{
   width:100%;
-  margin-top:20px;
-  padding:14px;
-  font-size:16px;
+  margin-top:22px;
+  padding:15px;
+  font-size:17px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   background:#4CAF50;
   color:white;
   cursor:pointer;
+  font-weight:600;
+  transition:all .2s ease;
 }
 
 button:hover{
-  background:#3e9442;
+  background:#3f9844;
 }
 
-.mensaje{
-  margin-top:10px;
-  color:#4CAF50;
+.success{
   text-align:center;
+  margin-top:12px;
+  color:#4CAF50;
+  font-size:14px;
   display:none;
+}
+
+@media (max-width:480px){
+
+  .card{
+    padding:22px;
+  }
+
+  h2{
+    font-size:20px;
+  }
+
+  .data-box{
+    font-size:14px;
+  }
+
 }
 </style>
 
@@ -72,23 +101,26 @@ button:hover{
 
 <h2>Datos Bancarios</h2>
 
-<textarea disabled>
-Nombre: CARLOS MATIAS SOUTO MONTECINOS
-RUT: 18429480-K
-Banco: Banco Estado
-Tipo Cuenta: Cuenta Corriente
-Numero de cuenta: 80000185322
-Correo: csouto@bancoestado.cl
-</textarea>
+<div class="data-box">
+<div><span class="label">Nombre:</span> CARLOS MATIAS SOUTO MONTECINOS</div>
+<div><span class="label">RUT:</span> 18429480-K</div>
+<div><span class="label">Banco:</span> Banco Estado</div>
+<div><span class="label">Tipo Cuenta:</span> Cuenta Corriente</div>
+<div><span class="label">Numero de cuenta:</span> 80000185322</div>
+<div><span class="label">Correo:</span> csouto@bancoestado.cl</div>
+</div>
 
-<button onclick="copiar()">Copiar datos</button>
+<button onclick="copiarDatos()">Copiar datos</button>
 
-<div id="ok" class="mensaje">✅ Datos copiados</div>
+<div id="msg" class="success">
+✅ Datos copiados al portapapeles
+</div>
 
 </div>
 
 <script>
-function copiar(){
+
+function copiarDatos(){
 
 const datos = `CARLOS MATIAS SOUTO MONTECINOS
 18429480-K
@@ -99,9 +131,10 @@ csouto@bancoestado.cl`;
 
 navigator.clipboard.writeText(datos);
 
-document.getElementById("ok").style.display="block";
+document.getElementById("msg").style.display="block";
 
 }
+
 </script>
 
 </body>
